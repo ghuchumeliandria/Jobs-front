@@ -1,15 +1,30 @@
 "use client"
 import XSvg from '@/app/assets/svgs/XSvg';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import NavBarBtn from '../../__atoms/NavBarBtn/NavBarBtn';
 import Link from 'next/link';
 import Image from 'next/image';
 import House from '../../../assets/images/house_2163350.png'
+import RespHeaderProfite from '../../__atoms/headerProfile/RespHeaderProfite';
+import { deleteCookie, getCookie } from 'cookies-next';
+import { useGetCurrentUserOrCompany } from '@/app/lib/getCurrentUserOrCompany';
+import Logout from '../../../assets/images/logout.png'
+
+import { Company, User } from '@/app/types/types';
 type Props = {
     setShowNavBar: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export default function ResponsiveNavBar({ setShowNavBar }: Props) {
+    const [user, setUser] = useState<Company | User>()
+    const token = getCookie("token")
+    const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
+    useEffect(() => {
+        if (token) {
+            getCurrentUserOrCompany({ token, setUser })
+        }
+    }, [])
+
     return (
         <div className="fixed inset-0 bg-white bg-opacity-80 flex flex-col pt-[60px] z-40 pl-8 pr-4.5">
             <button
@@ -48,6 +63,19 @@ export default function ResponsiveNavBar({ setShowNavBar }: Props) {
                 </Link>
 
             </div>
+            {user ?
+                <div className="">
+                    <RespHeaderProfite user={user} />
+                    <button className='cursor-pointer mt-10 flex gap-3 items-center text-[14px] hover:text-purple-800 ' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={40} height={40} /> გამოსვლა</button>
+                </div>
+                :
+                <div className="flex justify-center mt-[100px]">
+
+                    <Link href="/sign-in"><button className='flex cursor-pointer px-10 py-2 bg-transparent border-[1px] border-[#0000006a] font-semibold hover:bg-[#00000017] rounded-[10px] text-[15px]   '>შესვლა</button></Link>
+
+
+                </div>
+            }
 
         </div>
     )

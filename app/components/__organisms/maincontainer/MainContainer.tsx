@@ -10,7 +10,7 @@ import Companies from '../getAllCompanies/Companies'
 export default function MainContainer() {
     return (
         <div className='w-full'>
-            <div className="w-full fixed shadow-[0_2px_10px_rgba(0,0,0,0.08)] top-0 bg-white py-5  z-30 "><Header /></div>
+            <Header />
             <div className="w-full max-w-[1440px] pt-20 z-20 min-h-[200vh] px-[100px] mx-auto  max-[1058px]:px-[70px] max-[900px]:px-5 max-[450px]:px-3 transition-all duration-300 ">
                 <Search />
 

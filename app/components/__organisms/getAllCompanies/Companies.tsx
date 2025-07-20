@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Email from '../../../assets/images/email_3624711.png'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import LoadingOverlay from '../../__atoms/loading/LOadingOverlay'
 
 export default function Companies() {
 
@@ -30,7 +31,7 @@ export default function Companies() {
 
     console.log(companies)
 
-    if (loading) return <div className="absolute top-0 left-0 bottom-0 z-[1000] right-0 bg-black"><h1 className='text-white'>...Loading</h1></div>
+    if (loading) return <LoadingOverlay />
     return (
 
         <div className='w-full flex flex-wrap  gap-4  '>
