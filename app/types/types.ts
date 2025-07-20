@@ -4,8 +4,9 @@ export type Company = {
     email: string;
     description: string;
     role: "COMPANY" | "ADMIN" | "USER";
-    avatar?: string; // optional თუ ყოველთვის არაა
+    avatar?: string; 
     status: "pending" | "approved" | "rejected";
+    vacansies : Vacancy[]
     updatedAt: string;
     createdAt: string;
     __v: number;
@@ -25,8 +26,21 @@ export type Vacancy = {
     __v: number;
   };
 
+  export type User = {
+    _id: string;
+    fullName: string;
+    email: string;
+    role: "COMPANY" | "ADMIN" | "USER";
+    avatar?: string;
+    createdAt: string;
+    updatedAt: string;
+    applies : string[]
+    __v: number;
+  }
+
   export type Resume = {
     _id: string;
     fileId: string; 
-    user: string;    
+    user: string;   
+     
   }
