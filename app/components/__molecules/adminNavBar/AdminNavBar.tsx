@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import React from 'react'
 
-export default function NavBar() {
+export default function AdminNavBar() {
     const navBarArr = [{ text: "ვაკანსიები", link: "/ravi" }, { text: "კომპანიები", link: "/ravi" }, { text: "ჩვენს შესახებ", link: "/ravi" },]
 
     return (

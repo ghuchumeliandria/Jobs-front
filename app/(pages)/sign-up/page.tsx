@@ -2,6 +2,7 @@
 import { axiosInstance } from '@/app/lib/axios-instance'
 import { SignUpSchema, SignUpType } from '@/app/validations/SignUp-shchema'
 import { yupResolver } from '@hookform/resolvers/yup'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -54,7 +55,6 @@ export default function SignUp() {
                             })}
                             className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A155B9]"
                         >
-                            <option value="">აირჩიე როლი</option>
                             <option value="USER" >მომხმარებელი</option>
                             <option value="COMPANY" >კომპანია</option>
                         </select>
@@ -94,7 +94,7 @@ export default function SignUp() {
                         {errors.email && (
                             <p className='text-red-500 text-[14px]'>{errors.email.message}</p>
                         )}
-                       
+
                     </div>
 
                     <div>
@@ -151,6 +151,10 @@ export default function SignUp() {
                         შექმენი ანგარიში
                     </button>
                 </form>
+                <div className="flex gap-2 mt-3">
+                    <p>Already have an account? </p>
+                    <Link href="/sign-in" className='text-[#8f44a4] hover:underline'>Sign in</Link>
+                </div>
             </div >
         </div >
     )

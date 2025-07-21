@@ -3,6 +3,7 @@ import { axiosInstance } from '@/app/lib/axios-instance'
 import { SignInSchema, SignInType } from '@/app/validations/SignIn-schema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { setCookie } from 'cookies-next'
+import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import React from 'react'
 import { useForm } from 'react-hook-form'
@@ -84,6 +85,11 @@ export default function SignIn() {
                         შესვლა
                     </button>
                 </form>
+                <div className="flex gap-2 mt-4">
+                    <p>Don't have an account?  </p>
+                    <Link href="/sign-up" className='text-[#8f44a4] hover:underline'>Create account</Link>
+                </div>
+
             </div >
         </div >
     )
