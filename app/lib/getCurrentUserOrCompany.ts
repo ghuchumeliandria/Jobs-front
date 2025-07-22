@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { Company, User } from "../types/types"
 
 type PropsType = {
-    token : string | Promise<CookieValueTypes>,
+    token : CookieValueTypes | Promise<CookieValueTypes>,
     setUser : (data : Company | User) => void
 }
 

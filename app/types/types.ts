@@ -1,3 +1,5 @@
+import { CookieValueTypes } from "cookies-next";
+
 export type Company = {
     _id: string;
     fullName: string;
@@ -32,6 +34,7 @@ export type Vacancy = {
     email: string;
     role: "COMPANY" | "ADMIN" | "USER";
     avatar?: string;
+    status?: "pending" | "approved" | "rejected";
     createdAt: string;
     updatedAt: string;
     applies : string[]
@@ -42,5 +45,8 @@ export type Vacancy = {
     _id: string;
     fileId: string; 
     user: string;   
-     
+  }
+
+  export type Token = {
+      token: CookieValueTypes | Promise<CookieValueTypes>
   }
