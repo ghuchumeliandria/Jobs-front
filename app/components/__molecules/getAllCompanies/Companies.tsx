@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Email from '../../../assets/images/email_3624711.png'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import LoadingOverlay from '../../__atoms/loading/LOadingOverlay'
+import LoadingOverlay from '../../__atoms/loading/LoadingOverlay'
 
 export default function Companies() {
 
@@ -34,16 +34,16 @@ export default function Companies() {
     if (loading) return <LoadingOverlay />
     return (
 
-        <div className='w-full flex flex-wrap  gap-4  '>
-            <motion.div
-                initial={{ y: '100%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, ease: 'easeOut' }}
-                className='w-full flex flex-wrap  gap-4 '
-            >
+        <motion.div
+            initial={{ y: '100%', opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
 
+        >
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
                 {companies ? companies.map((el: Company, index) => (
-                    <div className="w-full max-w-[295px] p-5 rounded-2xl border-[1px] border-[#e5e7eb] shadow-2xl shadow-[#A155B9]" key={index}>
+                    <div className="w-full max-w-[295px] p-5 rounded-2xl border-[1px] border-[#e5e7eb] shadow-2xl shadow-[#A155B9] max-[639px]:max-w-full max-[639px]:rounded-xl" key={index}>
                         <div className="flex gap-3 items-center">
                             {el.avatar ?
                                 <Image src={el.avatar} alt='company-profile' width={30} height={30} />
@@ -61,8 +61,8 @@ export default function Companies() {
                         </div>
                     </div>
                 )) : <h1>კომპანიები არ არის</h1>}
-            </motion.div>
-        </div>
+            </div>
+        </motion.div>
 
 
     )

@@ -1,52 +1,42 @@
-"use client"
-import { ReactNode, useEffect, useState } from "react"
-import { useGetCurrentUserOrCompany } from "../lib/getCurrentUserOrCompany"
-import { getCookie } from "cookies-next"
-import { Company, User } from "../types/types"
-import { useRouter } from "next/navigation"
-import LoadingOverlay from "../components/__atoms/loading/LOadingOverlay"
+// "use client"
 
+// import { useEffect, useState } from "react"
+// import { CookieValueTypes, getCookie } from "cookies-next"
+// import { useRouter } from "next/navigation"
+// import {jwtDecode} from "jwt-decode"
 
+// interface JwtPayload {
+//   role: string | Promise<CookieValueTypes>
+// }
 
-export default function IsAdminGuard(){
+// export default function IsAdminGuard({ children }: { children: React.ReactNode }) {
+//   const router = useRouter()
+//   const [isLoading, setIsLoading] = useState(true)
 
-    
-    const router = useRouter()
-    const [user, setUser] = useState<Company | User>()
-    const [loading, setLoading] = useState(true)
-    const token = getCookie("token")
-    const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
+//   useEffect(() => {
+//     const token = getCookie("token") 
 
-    useEffect(() => {
-        const fetchUser = async () => {
-            if (!token && user?.role !== 'ADMIN') {
-                router.push('/')
-                return null
-            }
-            
-            await getCurrentUserOrCompany({ token, setUser })
-            setLoading(false)
-        }
-        
-        fetchUser()
-        
-    }, [])
-    
-    
-    
-    useEffect(() => {
-        if (!loading && user && user.role !== "ADMIN") {
-            router.push('/')
-        }
-    }, [user, loading])
-    
-    if (!loading && user && user.role !== "ADMIN") {
-        return null
-    }
+//     if (!token) {
+//       router.push("/") 
+//       return
+//     }
 
-    if(loading && user?.role !== 'ADMIN') return false
-    
-    
-    return true
-    
-}
+//     try {
+//       const decoded = jwtDecode<JwtPayload>(token)
+
+//       if (decoded.role !== "admin") {
+//         router.push("/") 
+//         return
+//       }
+
+//       setIsLoading(false)
+//     } catch (error) {
+//       console.error("Invalid token", error)
+//       router.push("/") 
+//     }
+//   }, [router])
+
+//   if (isLoading) return null 
+
+//   return <>{children}</>
+// }

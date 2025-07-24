@@ -25,8 +25,10 @@ export default function ResponsiveNavBar({ setShowNavBar }: Props) {
         }
     }, [])
 
+
+
     return (
-        <div className="fixed inset-0 bg-white bg-opacity-80 flex flex-col pt-[60px] z-40 pl-8 pr-4.5 overflow-y-auto">
+        <div className="fixed inset-0 bg-white  bg-opacity-80 flex flex-col pt-[60px] z-[9999]  pl-8 pr-4.5 overflow-y-scroll ">
             <button
                 className="absolute cursor-pointer top-13 right-4 text-white text-2xl w-10 h-10 flex justify-center items-center rounded-full bg-[#a255b961] hover:bg-white hover:border-[1px] border-[#A155B9] transition-all duration-100"
                 onClick={() => setShowNavBar(false)}
@@ -63,19 +65,22 @@ export default function ResponsiveNavBar({ setShowNavBar }: Props) {
                 </Link>
 
             </div>
-            {user ?
-                <div className="">
-                    <RespHeaderProfite user={user} />
-                    <button className='cursor-pointer mt-10 flex gap-3 items-center text-[14px] hover:text-purple-800 ' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={40} height={40} /> გამოსვლა</button>
-                </div>
-                :
-                <div className="flex justify-center mt-[100px]">
+            <div className="pb-5">
 
-                    <Link href="/sign-in"><button className='flex cursor-pointer px-10 py-2 bg-transparent border-[1px] border-[#0000006a] font-semibold hover:bg-[#00000017] rounded-[10px] text-[15px]   '>შესვლა</button></Link>
+                {user ?
+                    <div className="">
+                        <RespHeaderProfite user={user} />
+                        <button className='cursor-pointer mt-10 flex gap-3 items-center text-[14px] hover:text-purple-800 ' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={40} height={40} /> გამოსვლა</button>
+                    </div>
+                    :
+                    <div className="flex justify-center mt-[100px]">
+
+                        <Link href="/sign-in"><button className='flex cursor-pointer px-10 py-2 bg-transparent border-[1px] border-[#0000006a] font-semibold hover:bg-[#00000017] rounded-[10px] text-[15px]   '>შესვლა</button></Link>
 
 
-                </div>
-            }
+                    </div>
+                }
+            </div>
 
         </div>
     )

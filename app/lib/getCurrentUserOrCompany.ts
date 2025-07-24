@@ -11,7 +11,7 @@ type PropsType = {
 export const useGetCurrentUserOrCompany = () =>{
 
     const router = useRouter()
-    const getCurrentUserOrCompany = async ({token , setUser } : PropsType) =>{
+    const getCurrentUserOrCompany = async ({token , setUser  } : PropsType) =>{
         
         try {
             const resp = await axiosInstance.get('/auth/current-user' , {
