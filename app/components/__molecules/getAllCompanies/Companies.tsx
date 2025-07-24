@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Email from '../../../assets/images/email_3624711.png'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import LoadingOverlay from '../../__atoms/loading/LoadingOverlay'
+import LoadingOverlay from '../../__atoms/loading/LOadingOverlay'
 
 export default function Companies() {
 

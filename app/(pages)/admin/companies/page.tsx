@@ -1,5 +1,5 @@
 "use client"
-import LoadingOverlay from '@/app/components/__atoms/loading/LoadingOverlay'
+import LoadingOverlay from '@/app/components/__atoms/loading/LOadingOverlay'
 import AdminHeader from '@/app/components/__molecules/adminheader/AdminHeader'
 import { axiosInstance } from '@/app/lib/axios-instance'
 import { Company } from '@/app/types/types'

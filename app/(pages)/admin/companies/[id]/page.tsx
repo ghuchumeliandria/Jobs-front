@@ -1,5 +1,5 @@
 "use client"
-import LoadingOverlay from '@/app/components/__atoms/loading/LoadingOverlay'
+import LoadingOverlay from '@/app/components/__atoms/loading/LOadingOverlay'
 import { axiosInstance } from '@/app/lib/axios-instance'
 import { Company, Token, User } from '@/app/types/types'
 import { CompanyApprovalSchema, CompanyApprovalType } from '@/app/validations/companyApproval-shema'
