@@ -6,12 +6,14 @@ import Image from 'next/image'
 import PlaySvg from '@/app/assets/svgs/PlaySvg'
 import Link from 'next/link'
 import office from '../../../assets/images/office-building_4300059.png'
-import Companies from '../getAllCompanies/Companies'
+import Companies from '../../__molecules/getAllCompanies/Companies'
+import VacancyImg from '../../../assets/images/job-vacancy_17929782.png'
+import Vacancies from '../vacancies/Vacancies'
 export default function MainContainer() {
     return (
         <div className='w-full'>
             <Header />
-            <div className="w-full max-w-[1440px] pt-20 z-20 min-h-[200vh] px-[100px] mx-auto  max-[1058px]:px-[70px] max-[900px]:px-5 max-[450px]:px-3 transition-all duration-300 ">
+            <div className="w-full max-w-[1440px] py-20 z-20 min-h-[200vh] px-[100px] mx-auto  max-[1058px]:px-[70px] max-[900px]:px-5 max-[450px]:px-3 transition-all duration-300 ">
                 <Search />
 
                 <div className="w-full px-16 py-9 flex flex-col gap-[82px] rounded-2xl relative mt-[100px] z-10" style={{
@@ -32,6 +34,11 @@ export default function MainContainer() {
                 <div className="mt-28">
                     <h1 className='text-[28px] mb-[30px] text-black font-semibold flex gap-3 items-center '><Image src={office} alt='office' width={40} height={40} />კომპანიები</h1>
                     <Companies />
+                </div>
+
+                <div className="mt-28">
+                    <h1 className='text-[28px] mb-[30px] text-black font-semibold flex gap-3 items-center '><Image src={VacancyImg} alt='office' width={40} height={40} />ვაკანსიები</h1>
+                    <Vacancies />
                 </div>
             </div>
         </div>

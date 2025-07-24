@@ -26,7 +26,7 @@ export default function ResponsiveNavBar({ setShowNavBar }: Props) {
     }, [])
 
     return (
-        <div className="fixed inset-0 bg-white bg-opacity-80 flex flex-col pt-[60px] z-40 pl-8 pr-4.5">
+        <div className="fixed inset-0 bg-white bg-opacity-80 flex flex-col pt-[60px] z-40 pl-8 pr-4.5 overflow-y-auto">
             <button
                 className="absolute cursor-pointer top-13 right-4 text-white text-2xl w-10 h-10 flex justify-center items-center rounded-full bg-[#a255b961] hover:bg-white hover:border-[1px] border-[#A155B9] transition-all duration-100"
                 onClick={() => setShowNavBar(false)}
