@@ -3,7 +3,7 @@ import LoadingOverlay from '@/app/components/__atoms/loading/LOadingOverlay'
 import AdminHeader from '@/app/components/__molecules/adminheader/AdminHeader'
 import IsLoggedIn from '@/app/guard/IsLogedIn.guard'
 import { axiosInstance } from '@/app/lib/axios-instance'
-import { Company, Token, User } from '@/app/types/types'
+import { Company, Token, User, Vacancy } from '@/app/types/types'
 import { ApprovalSchema, ApprovalType } from '@/app/validations/Approval-shema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { getCookie } from 'cookies-next'
@@ -13,7 +13,7 @@ import { useForm } from 'react-hook-form'
 
 export default function CompanyApproval() {
     const [loading, setLoading] = useState(true)
-    const [company, setCompany] = useState<Company | User>()
+    const [vacancy, setVacancy] = useState<Vacancy>()
     const [status, setStatus] = useState<String | undefined>('')
     const [modal, setModal] = useState(false)
     const token = getCookie("token")
@@ -30,26 +30,26 @@ export default function CompanyApproval() {
 
 
     console.log(id)
-    const getCompany = async ({ token }: Token,) => {
-        const resp = await axiosInstance.get(`admin/company/${id}`, {
+    const getVacancy = async ({ token }: Token,) => {
+        const resp = await axiosInstance.get(`admin/vacancy/${id}`, {
             headers: {
                 'Authorization': `Bearer ${token} `
             }
         }
         )
-        if (resp.status === 200) setCompany(resp.data)
+        if (resp.status === 200) setVacancy(resp.data)
 
     }
 
     useEffect(() => {
         if (token)
-            getCompany({ token })
+            getVacancy({ token })
         setLoading(false)
     }, [])
 
 
     const onSubmit = async ({ status }: ApprovalType) => {
-        const resp = await axiosInstance.patch(`/admin/company-approval/${id}`, {
+        const resp = await axiosInstance.patch(`/admin/vacancy-approval/${id}`, {
             status
         }, {
             headers: {
@@ -63,7 +63,7 @@ export default function CompanyApproval() {
                 setModal(false)
                 setStatus(status)
             }, 4000)
-            await getCompany({ token })
+            await getVacancy({ token })
         }
 
     }
@@ -73,24 +73,26 @@ export default function CompanyApproval() {
     return (
         <IsLoggedIn >
 
-            <div className="p-4">
+
+            <AdminHeader />
+            <div className="p-4 mt-20">
 
 
                 {modal && (
                     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
                         <div className="bg-white p-6 rounded-2xl shadow-2xl w-[90%] max-w-md animate-fade-in">
                             <h2
-                                className={`text-lg font-bold mb-2 ${company?.status === "rejected" ? "text-red-500" : "text-green-500"
+                                className={`text-lg font-bold mb-2 ${vacancy?.status === "rejected" ? "text-red-500" : "text-green-500"
                                     }`}
                             >
-                                {company?.status === "rejected"
+                                {vacancy?.status === "rejected"
                                     ? "თქვენ კომპანია არ დაამატეთ საიტზე"
                                     : "თქვენ კომპანია წარმატებით დაამატეთ საიტზე"}
                             </h2>
                             <p className="text-sm font-semibold text-gray-700 mb-2">
-                                სტატუსი: {company?.status}
+                                სტატუსი: {vacancy?.status}
                                 <span
-                                    className={`${company?.status === "rejected" ? "text-red-500" : "text-green-500"
+                                    className={`${vacancy?.status === "rejected" ? "text-red-500" : "text-green-500"
                                         }`}
                                 >
                                     {status}
@@ -101,14 +103,14 @@ export default function CompanyApproval() {
                 )}
 
                 <div className="bg-gray-50 p-6 rounded-xl shadow-md mb-6 max-w-xl mx-auto">
-                    <h1 className="text-xl font-semibold text-gray-800 mb-2">{company?.fullName}</h1>
-                    <p className="text-sm text-gray-600 mb-1">📧 {company?.email}</p>
-                    <p className="text-sm text-gray-600 mb-1">🖼 {company?.avatar}</p>
+                    <h1 className="text-xl font-semibold text-gray-800 mb-2">{vacancy?.name}</h1>
+                    <p className="text-sm text-gray-600 mb-1">📧 {vacancy?.company?.email}</p>
+                    <p className="text-sm text-gray-600 mb-1">🖼 {vacancy?.company.avatar}</p>
                     <p className="text-sm font-medium">
                         სტატუსი:
-                        <span className={`${company?.status === "rejected" ? "text-red-500" : "text-green-500"}`}
+                        <span className={`${vacancy?.status === "rejected" ? "text-red-500" : "text-green-500"}`}
                         >
-                            {company?.status}
+                            {vacancy?.status}
                         </span>
                     </p>
                 </div>
@@ -122,7 +124,7 @@ export default function CompanyApproval() {
                     </label>
 
                     <select
-                        defaultValue={company?.status}
+                        defaultValue={vacancy?.status}
                         {...register("status")}
                         id="status"
                         className="w-full max-w-sm px-4 py-2 mb-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A155B9]"

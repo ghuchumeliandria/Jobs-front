@@ -12,7 +12,7 @@ export const useGetCurrentUserOrCompany = () =>{
 
     const router = useRouter()
     const getCurrentUserOrCompany = async ({token , setUser  } : PropsType) =>{
-        
+
         try {
             const resp = await axiosInstance.get('/auth/current-user' , {
                 headers : {
@@ -20,11 +20,11 @@ export const useGetCurrentUserOrCompany = () =>{
                 }
             })
             if(resp.status === 200){
+                console.log(resp.data, "res.data")
                 setUser(resp.data)
             }   
         } catch (error) {
             deleteCookie("token")
-            
         }
     }
     return { getCurrentUserOrCompany}
