@@ -37,18 +37,18 @@ export default function ResponsiveNavBar({ setShowNavBar }: Props) {
             </button>
             <h1 className='mb-[30px] text-[#A155B9] text-[13px] font-semibold'>მენიუ</h1>
             <ul className="flex flex-col  text-white text-2xl border-b-[1px] border-[#e5e7eb] pb-8">
-                <NavBarBtn text="ვაკანსიები" />
-                <NavBarBtn text="კომპანიები" />
-                <NavBarBtn text="ჩვენს შესახებ" />
-                <NavBarBtn text="შეტყობინებები" />
-                <NavBarBtn text="შენახული ვაკანსიები" />
-                <NavBarBtn text="გაგზავნილი" />
+                <NavBarBtn text="ვაკანსიები" link='/vacancies' />
+                <NavBarBtn text="კომპანიები" link='/vacancies' />
+                <NavBarBtn text="ჩვენს შესახებ" link='/vacancies' />
+                <NavBarBtn text="შეტყობინებები" link='/vacancies' />
+                <NavBarBtn text="შენახული ვაკანსიები" link='/vacancies' />
+                <NavBarBtn text="გაგზავნილი" link='/vacancies' />
             </ul>
 
             <div className="flex flex-col gap-2 mt-5">
                 <ul>
-                    <NavBarBtn text="ხშირად დასმული კითხვები" />
-                    <NavBarBtn text="შეფასება" />
+                    <NavBarBtn text="ხშირად დასმული კითხვები" link='ravi' />
+                    <NavBarBtn text="შეფასება" link='/ravi' />
                 </ul>
                 <h1>599 91 90 49</h1>
                 <Link className='hover:text-[#A155B9]'

@@ -2,7 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 export default function NavBar() {
-    const navBarArr = [{ text: "ვაკანსიები", link: "/ravi" }, { text: "კომპანიები", link: "/ravi" }, { text: "ჩვენს შესახებ", link: "/ravi" },]
+    const navBarArr = [{ text: "ვაკანსიები", link: "/vacancies" }, { text: "კომპანიები", link: "/companies" }, { text: "ჩვენს შესახებ", link: "/ravi" },]
 
     return (
         <div>

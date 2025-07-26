@@ -16,25 +16,25 @@ export default function MainContainer() {
             <div className="w-full max-w-[1440px] py-20 z-20 min-h-[200vh] px-[100px] mx-auto  max-[1058px]:px-[70px] max-[900px]:px-5 max-[450px]:px-3 transition-all duration-300 ">
                 <Search />
 
-                <div className="w-full px-16 py-9 flex flex-col gap-[82px] rounded-2xl relative mt-[100px] z-10" style={{
+                <div className="w-full px-16 py-9 flex flex-col gap-[82px] rounded-2xl relative mt-[100px] z-10 max-[800px]:hidden" style={{
                     background: "linear-gradient(270deg, rgb(52, 111, 206) 0%, rgb(161, 85, 185) 100%)",
                 }} >
-                    <h1 className='text-[32px] text-white font-bold'>გამოსცადე ახალი შესაძლებლობები</h1>
+                    <h1 className='text-[32px] text-white font-bold max-[1000px]:text-[26px]'>გამოსცადე ახალი შესაძლებლობები</h1>
                     <div className="flex gap-4">
                         <Link href={'/sign-up'}>
                             <button className='px-6 py-3 bg-white cursor-pointer rounded-full font-semibold '>ანგარიშის შექმნა</button>
                         </Link>
 
-                        <button className='px-5 py-2 border-[2px] border-white text-white font-semibold rounded-full  h-full flex gap-2 '>ინსტრუქცია <PlaySvg /></button>
+                        <button className='px-5 py-2 border-[2px] border-white text-white font-semibold rounded-full  h-full flex gap-2 cursor-pointer '>ინსტრუქცია <PlaySvg /></button>
                     </div>
-                    <Image src={Daviti} alt="daviti" width={220} height={140} className='absolute right-[120px] bottom-0  ' />
+                    <Image src={Daviti} alt="daviti" width={220} height={140} className='absolute right-[120px] bottom-0 max-[1130px]:right-[10px]  transition-all duration-300 ' />
                 </div>
 
 
                 <div className="mt-28">
                     <div className="flex justify-between items-center  mb-[30px]">
                         <h1 className='text-[28px] mb-[30px] text-black font-semibold flex gap-3 items-center '><Image src={office} alt='office' width={40} height={40} />კომპანიები</h1>
-                        <Link href='' className='underline hover:no-underline hover:text-purple-500' >ყველა კომპანია</Link>
+                        <Link href='companies' className='underline hover:no-underline hover:text-purple-500' >ყველა კომპანია</Link>
                     </div>
                     <Companies />
                 </div>
@@ -42,7 +42,7 @@ export default function MainContainer() {
                 <div className="mt-28">
                     <div className="flex justify-between items-center mb-[30px]">
                         <h1 className='text-[28px] text-black font-semibold flex gap-3 items-center '><Image src={VacancyImg} alt='office' width={40} height={40} />ვაკანსიები</h1>
-                        <Link href='' className='underline hover:no-underline hover:text-purple-500' >ყველა ვაკანსია</Link>
+                        <Link href='/vacancies' className='underline hover:no-underline hover:text-purple-500' >ყველა ვაკანსია</Link>
                     </div>
                     <Vacancies />
                 </div>

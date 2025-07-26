@@ -4,13 +4,16 @@ import { axiosInstance } from '@/app/lib/axios-instance'
 import { AddVacancySchema, AddVacancyType } from '@/app/validations/AddVacancy-schema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { getCookie } from 'cookies-next'
+import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import success from '../../assets/images/success_7518748.png'
 
 export default function AddVacancy() {
     const token = getCookie("token")
     const router = useRouter()
+    const [modal, setModal] = useState(false)
     const {
         register,
         handleSubmit,
@@ -33,10 +36,11 @@ export default function AddVacancy() {
             })
 
             if (resp.status === 201) {
-                console.log("warmatebit sheiqmna sagoool")
+                setModal(true)
                 setTimeout(() => {
                     router.push('/')
-                }, 5000)
+                    setModal(false)
+                }, 3000)
             }
         } catch (error) {
             console.log(error)
@@ -45,6 +49,30 @@ export default function AddVacancy() {
     console.log(errors)
     return (
         <div>
+
+            {modal && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-[#9a949475] bg-opacity-40 px-4">
+                    <div className="bg-white p-6 rounded-2xl  shadow-2xl w-full  max-w-md animate-fade-in">
+                        <div className="flex flex-col sm:flex-row items-center gap-4">
+
+                            <h1 className="text-center text-sm sm:text-base font-medium text-gray-800">
+                                თქვენი ვაკანსია წარმატებით გაიგზავნა და ელოდება დამტკიცებას
+                            </h1>
+                            <Image
+                                src={success}
+                                alt="success-icon"
+                                width={32}
+                                height={32}
+                                className="min-w-[32px]"
+                            />
+                        </div>
+
+                        <div className="w-4 h-4 mx-auto mt-3 border-2 border-t-transparent border-purple-500 rounded-full animate-spin" />
+                    </div>
+                </div>
+            )}
+
+
             <Header />
             <form onSubmit={handleSubmit(onSubmit)} className="max-w-xl mx-auto  p-6 bg-white shadow-[0_0_100px_rgba(0,0,0,0.08)] rounded-[20px]  space-y-4 mt-[220px]">
                 <h2 className="text-2xl font-bold text-center text-gray-800">დაამატე ვაკანსია</h2>

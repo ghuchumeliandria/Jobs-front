@@ -3,11 +3,11 @@ import LoadingOverlay from '@/app/components/__atoms/loading/LOadingOverlay'
 import AdminHeader from '@/app/components/__molecules/adminheader/AdminHeader'
 import IsLoggedIn from '@/app/guard/IsLogedIn.guard'
 import { axiosInstance } from '@/app/lib/axios-instance'
-import { Company, Token, User, Vacancy } from '@/app/types/types'
+import { Token, User, Vacancy } from '@/app/types/types'
 import { ApprovalSchema, ApprovalType } from '@/app/validations/Approval-shema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { getCookie } from 'cookies-next'
-import { useParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 
@@ -18,7 +18,7 @@ export default function CompanyApproval() {
     const [modal, setModal] = useState(false)
     const token = getCookie("token")
     const { id } = useParams()
-
+    const router = useRouter()
     const {
         register,
         handleSubmit,
@@ -62,7 +62,8 @@ export default function CompanyApproval() {
             setTimeout(() => {
                 setModal(false)
                 setStatus(status)
-            }, 4000)
+                router.push('/admin/vacancies')
+            }, 3000)
             await getVacancy({ token })
         }
 
@@ -86,8 +87,8 @@ export default function CompanyApproval() {
                                     }`}
                             >
                                 {vacancy?.status === "rejected"
-                                    ? "თქვენ კომპანია არ დაამატეთ საიტზე"
-                                    : "თქვენ კომპანია წარმატებით დაამატეთ საიტზე"}
+                                    ? "ვაკანსია წარმატებით დარეჯექთდა"
+                                    : "ვაკანსია წარმატებით დაემატა კომპანიას"}
                             </h2>
                             <p className="text-sm font-semibold text-gray-700 mb-2">
                                 სტატუსი: {vacancy?.status}
