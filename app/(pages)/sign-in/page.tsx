@@ -1,5 +1,6 @@
 'use client'
 import { axiosInstance } from '@/app/lib/axios-instance'
+import { useGetCurrentUserOrCompany } from '@/app/lib/getCurrentUserOrCompany'
 import { SignInSchema, SignInType } from '@/app/validations/SignIn-schema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { setCookie } from 'cookies-next'
@@ -9,7 +10,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form'
 export default function SignIn() {
     const router = useRouter()
-
+    const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
     const {
         register,
         handleSubmit,
@@ -19,16 +20,27 @@ export default function SignIn() {
         resolver: yupResolver(SignInSchema)
     })
 
+
+
     const onSubmit = async ({ email, password }: SignInType) => {
         try {
             const resp = await axiosInstance.post('/auth/sign-in', {
                 email, password
             })
+
             if (resp.status === 201) {
                 setCookie('token', resp.data.token, { maxAge: 60 * 120 })
+                console.log('Token set')
+                const role = await getCurrentUserOrCompany(resp.data)
+                console.log('gacda')
+                if (role === "ADMIN") {
+                    console.log('Redirecting to /admin')
+                    router.push('/admin')
+                    return
+                }
+
                 router.push('/')
             }
-
 
         } catch (error) {
             console.log(error)

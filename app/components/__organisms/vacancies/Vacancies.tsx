@@ -3,9 +3,11 @@ import { axiosInstance } from '@/app/lib/axios-instance'
 import { Vacancy } from '@/app/types/types'
 import { motion } from 'framer-motion'
 import Email from '../../../assets/images/email_3624711.png'
+import Money from '../../../assets/images/money_5409901.png'
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import LoadingOverlay from '../../__atoms/loading/LOadingOverlay'
+import Link from 'next/link'
 
 export default function Vacancies() {
 
@@ -52,7 +54,9 @@ export default function Vacancies() {
                                     <Image src={el.company.avatar} alt='company-profile' width={30} height={30} />
                                     : null}
                                 <div className="">
-                                    <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.company.fullName}</h1>
+                                    <Link href={`/vacancies/${el._id}`}>
+                                        <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.name}</h1>
+                                    </Link>
                                     <p className='text-[13px] text-violet-400'>{el.location}</p>
                                 </div>
 
@@ -71,8 +75,8 @@ export default function Vacancies() {
                                 {el.company.email}
                             </p>
                             <p className='text-[#222220] flex gap-2 text-[13px]'>
-                                <Image src='https://myjobs.ge/images/cases.svg' alt='vacancy-icon' width={20} height={20} />
-                                ვაკანსია
+                                <Image src={Money} alt='cash-icon' width={20} height={20} />
+                                    {el.sallery}$
                             </p>
                         </div>
                     </div>

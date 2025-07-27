@@ -6,6 +6,7 @@ import Email from '../../../assets/images/email_3624711.png'
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import LoadingOverlay from '../../__atoms/loading/LOadingOverlay'
+import Link from 'next/link'
 
 export default function Companies() {
 
@@ -49,8 +50,9 @@ export default function Companies() {
                                 <Image src={el.avatar} alt='company-profile' width={30} height={30} />
                                 : null}
                             <div className="">
-                                <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.fullName}</h1>
-
+                                <Link href={`/companies/${el._id}`}>
+                                    <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.fullName}</h1>
+                                </Link>
                             </div>
                         </div>
                         <div className="mt-1 flex flex-col gap-2">

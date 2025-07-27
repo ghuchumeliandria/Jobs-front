@@ -1,6 +1,5 @@
 import { CookieValueTypes, deleteCookie } from "cookies-next"
 import { axiosInstance } from "./axios-instance"
-import { useRouter } from "next/navigation"
 import { Company, User } from "../types/types"
 
 type PropsType = {
@@ -9,19 +8,22 @@ type PropsType = {
 }
 
 export const useGetCurrentUserOrCompany = () =>{
-
-    const router = useRouter()
     const getCurrentUserOrCompany = async ({token , setUser  } : PropsType) =>{
-
         try {
             const resp = await axiosInstance.get('/auth/current-user' , {
                 headers : {
                     'Authorization' : `Bearer ${token}`
                 }
             })
+            console.log(resp.status)
             if(resp.status === 200){
-                console.log(resp.data, "res.data")
-                setUser(resp.data)
+                
+                if(setUser){
+                    setUser(resp.data)
+                }
+                
+               return resp.data.role
+
             }   
         } catch (error) {
             deleteCookie("token")
