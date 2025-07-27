@@ -35,6 +35,7 @@ export default function AddResumeModal({ vacancyId, setModal }: Props) {
                     "Content-Type": "multipart/form-data",
                     "Authorization": `Bearer ${token}`
                 },
+                withCredentials: true,
             })
 
             if (resp.status === 201) {
