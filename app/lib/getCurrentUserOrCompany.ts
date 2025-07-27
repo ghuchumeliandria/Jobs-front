@@ -15,7 +15,6 @@ export const useGetCurrentUserOrCompany = () =>{
                     'Authorization' : `Bearer ${token}`
                 }
             })
-            console.log(resp.status)
             if(resp.status === 200){
                 
                 if(setUser){
@@ -26,7 +25,7 @@ export const useGetCurrentUserOrCompany = () =>{
 
             }   
         } catch (error) {
-            deleteCookie("token")
+            console.log("useri arasworia")
         }
     }
     return { getCurrentUserOrCompany}

@@ -4,19 +4,36 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { axiosInstance } from "@/app/lib/axios-instance";
 import LoadingOverlay from "@/app/components/__atoms/loading/LOadingOverlay";
-import { Vacancy } from "@/app/types/types";
+import { Company, User, Vacancy } from "@/app/types/types";
 import Header from "../header/Header";
 import { motion } from 'framer-motion'
 import Image from "next/image";
 import Email from '../../../assets/images/email_3624711.png'
 import Money from '../../../assets/images/money_5409901.png'
+import { useGetCurrentUserOrCompany } from "@/app/lib/getCurrentUserOrCompany";
+import { getCookie } from "cookies-next";
+import Link from "next/link";
 
 
 export default function VacanciesList() {
     const [loading, setLoading] = useState(true);
+    const [user, setUser] = useState<Company | User | null>(null)
     const [vacancies, setVacancies] = useState<Vacancy[]>([]);
 
     const searchParams = useSearchParams();
+
+    const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
+
+    const token = getCookie("token")
+
+    useEffect(() => {
+        const fetchUser = async () => {
+
+            if (token) await getCurrentUserOrCompany({ token, setUser })
+        }
+        fetchUser()
+
+    }, [])
 
     useEffect(() => {
         const getVacancies = async () => {
@@ -80,7 +97,9 @@ export default function VacanciesList() {
                                             <Image src={el.company.avatar} alt='company-profile' width={30} height={30} />
                                             : null}
                                         <div className="">
-                                            <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.name}</h1>
+                                            <Link href={`/vacancies/${el._id}`}>
+                                                <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.name}</h1>
+                                            </Link>
                                             <p className='text-[13px] text-violet-400'>{el.location}</p>
                                         </div>
 
@@ -100,9 +119,10 @@ export default function VacanciesList() {
                                     </p>
                                     <p className='text-[#222220] flex gap-2 text-[13px]'>
                                         <Image src={Money} alt='money-icon' width={20} height={20} />
-                                        {el.sallery}
+                                        {el.sallery} $
                                     </p>
                                 </div>
+
                             </div>
                         )) : (
 
