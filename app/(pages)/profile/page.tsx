@@ -20,7 +20,6 @@ export default function page() {
     if (!profile) return <LoadingOverlay />
     return (
         <div>
-
             {
                 profile.role === "COMPANY" ?
                     <CopmanyProfile company={profile as Company} /> : <UserProfile user={profile as User} />
