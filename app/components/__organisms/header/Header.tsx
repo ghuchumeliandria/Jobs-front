@@ -45,15 +45,19 @@ export default function Header() {
                                         <PlusSvg />ვაკანსიის დამატება
                                     </button>
                                 </Link>
-                                <HeaderProfile user={user} />
-                                <button className='cursor-pointer max-[768px]:hidden' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={30} height={30} /></button>
+                                <Link href={'profile'} >
+                                    <HeaderProfile user={user} />
+                                    <button className='cursor-pointer max-[768px]:hidden' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={30} height={30} /></button>
 
+                                </Link>
                             </div>
                             :
-                            <div className="flex gap-3 ">
-                                <HeaderProfile user={user} />
-                                <button className='cursor-pointer max-[768px]:hidden' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={30} height={30} /></button>
-                            </div>
+                            <Link href={"/profile"} >
+                                <div className="flex gap-3 ">
+                                    <HeaderProfile user={user} />
+                                    <button className='cursor-pointer max-[768px]:hidden' onClick={() => { deleteCookie('token'), window.location.reload() }}><Image src={Logout} alt='logout' width={30} height={30} /></button>
+                                </div>
+                            </Link>
 
                         : <div className="flex gap-2 items-center">
                             <Link href="/sign-in"><button className='flex cursor-pointer px-4 py-2.5 bg-[#A155B919] font-semibold hover:bg-[#A155B935] rounded-[14px] items-center gap-2 text-[13px] text-[#A155B9] max-[1058px]:hidden '><PlusSvg />ვაკანსიის დამატება</button></Link>

@@ -4,12 +4,15 @@ import { useGetCurrentUserOrCompany } from '@/app/lib/getCurrentUserOrCompany'
 import { SignInSchema, SignInType } from '@/app/validations/SignIn-schema'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { setCookie } from 'cookies-next'
+import { h1 } from 'framer-motion/client'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import React from 'react'
+import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
 export default function SignIn() {
     const router = useRouter()
+    const [loading, setLoading] = useState(false)
+    const [error, setError] = useState("")
     const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
     const {
         register,
@@ -23,6 +26,7 @@ export default function SignIn() {
 
 
     const onSubmit = async ({ email, password }: SignInType) => {
+        setLoading(true)
         try {
             const resp = await axiosInstance.post('/auth/sign-in', {
                 email, password
@@ -30,9 +34,7 @@ export default function SignIn() {
 
             if (resp.status === 201) {
                 setCookie('token', resp.data.token, { maxAge: 60 * 120 })
-                console.log('Token set')
                 const role = await getCurrentUserOrCompany(resp.data)
-                console.log('gacda')
                 if (role === "ADMIN") {
                     console.log('Redirecting to /admin')
                     router.push('/admin')
@@ -42,8 +44,11 @@ export default function SignIn() {
                 router.push('/')
             }
 
-        } catch (error) {
-            console.log(error)
+        } catch (error: any) {
+            setError(error.response.data.message)
+        }
+        finally {
+            setLoading(false)
         }
     }
 
@@ -88,18 +93,19 @@ export default function SignIn() {
                         {errors.password && (
                             <p className='text-red-500 text-[14px]'>{errors.password.message}</p>
                         )}
+                        {error !== "" && <h1 className='text-red-500 text-[14px] mt-1'>არასწორი მონაცემები</h1>}
                     </div>
-
                     <button
                         type="submit"
-                        className="w-full py-3 bg-[#A155B9] text-white font-semibold rounded-lg hover:bg-[#8f44a4] transition duration-300"
+                        className="w-full cursor-pointer py-3 bg-[#A155B9] text-white font-semibold rounded-lg hover:bg-[#8f44a4] transition duration-300"
                     >
                         შესვლა
                     </button>
+                    {loading && <h1>...loading</h1>}
                 </form>
                 <div className="flex gap-2 mt-4">
-                    <p>Don't have an account?  </p>
-                    <Link href="/sign-up" className='text-[#8f44a4] hover:underline'>Create account</Link>
+                    <p>არ ხარ დარეგისტრირებული?  </p>
+                    <Link href="/sign-up" className='text-[#8f44a4] hover:underline'>დარეგისტრირდი</Link>
                 </div>
 
             </div >

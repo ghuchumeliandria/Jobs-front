@@ -51,7 +51,7 @@ export default function page() {
     return (
         <div className="bg-[#e5e7eb45] min-h-[110vh] -mt-5 pt-5 relative">
             <Header />
-            <div className="w-full max-w-[1000px] mx-auto border border-[#ced0d3] mt-25 bg-white rounded-2xl p-6  flex flex-col  gap-6">
+            <div className="w-full max-w-[1000px] mx-auto border border-[#ced0d3] mt-25 bg-white rounded-2xl p-6  flex flex-col  gap-6 max-[1000px]:rounded-none">
                 {/* <div className="flex-shrink-0 self-center sm:self-start ">
                    
                 </div> */}
@@ -60,8 +60,8 @@ export default function page() {
                 <div className="w-full flex flex-col gap-3">
                     <div className="w-full flex justify-between items-center ">
                         <h1 className="text-xl font-bold text-gray-800">{vacancy?.name}</h1>
-                        <div className="flex gap-3 items-center">
-                            <button onClick={addResume} className='p-3  bg-[#a155b9] cursor-pointer rounded-full text-white font-semibold text-[13px]'>გაგზავნა</button>
+                        <div className="flex gap-3 items-center ">
+                            <button onClick={addResume} className='p-3  max-[500px]:hidden bg-[#a155b9] cursor-pointer rounded-full text-white font-semibold text-[13px]'>გააგზავნე CV</button>
                             <h1 className='text-[14px] text-gray-500'>{vacancy?.createdAt.split("T")[0]}</h1>
                         </div>
                     </div>
@@ -96,7 +96,7 @@ export default function page() {
 
                 <div className="">
                     <h1 className='text-[18px] font-semibold'>ვაკანსიის აღწერა</h1>
-                    <div className="pl-20 flex items-center gap-2">
+                    <div className="pl-20 flex items-center max-[550px]:pl-4 gap-2">
                         <span className="w-1 h-1 bg-black rounded-full inline-block mx-1"></span>
                         <p className='text-gray-400 text-[14px] '>{vacancy?.description}</p>
                     </div>
@@ -106,7 +106,7 @@ export default function page() {
                         <h1 className='text-[18px] font-semibold'>ხელფასის ანალიტიკა</h1>
                         <p className='mt-3 text-[14px] text-[#a155b9]'>ხელფასის სტატუსს Ხელოვნური ინტელექტი (AI) სხვადასხვა მონაცემების საფუძველზე ადგენს.
                         </p>
-                        <div className="flex gap-1 mt-4">
+                        <div className="flex gap-1 mt-4 max-[500px]:flex-col">
                             <div className="flex-1 text-center">
                                 <h2 className='mb-2 font-semibold'>დაბალი</h2>
                                 <div className={`h-3   ${vacancy?.sallery > 0 && vacancy?.sallery < 1000 ? "bg-red-500" : "bg-gray-300"}`}></div>
@@ -142,6 +142,10 @@ export default function page() {
                         </Link>
                         <p className='text-[12px]'>{vacancy?.location}</p>
                     </div>
+                </div>
+
+                <div className="flex gap-3 items-center min-[500px]:hidden justify-center">
+                    <button onClick={addResume} className='p-3  bg-[#a155b9] cursor-pointer rounded-full text-white font-semibold text-[13px]'>გააგზავნე CV</button>
                 </div>
 
             </div>

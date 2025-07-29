@@ -8,6 +8,7 @@ import Link from 'next/link'
 import office from '../../../assets/images/office-building_4300059.png'
 import Companies from '../../__molecules/getAllCompanies/Companies'
 import VacancyImg from '../../../assets/images/job-vacancy_17929782.png'
+import Arrow from '../../../assets/images/right-arrow_8066415.png'
 import Vacancies from '../vacancies/Vacancies'
 export default function MainContainer() {
     return (
@@ -34,7 +35,7 @@ export default function MainContainer() {
                 <div className="mt-28">
                     <div className="flex justify-between items-center  mb-[30px]">
                         <h1 className='text-[28px] mb-[30px] text-black font-semibold flex gap-3 items-center '><Image src={office} alt='office' width={40} height={40} />კომპანიები</h1>
-                        <Link href='companies' className='underline hover:no-underline hover:text-purple-500' >ყველა კომპანია</Link>
+                        <Link href='companies' className=' hover:underline hover:text-purple-500 flex gap-2 mb-5' >ყველა  <Image src={Arrow} alt='arrow' width={20} height={20} /></Link>
                     </div>
                     <Companies />
                 </div>
@@ -42,7 +43,7 @@ export default function MainContainer() {
                 <div className="mt-28">
                     <div className="flex justify-between items-center mb-[30px]">
                         <h1 className='text-[28px] text-black font-semibold flex gap-3 items-center '><Image src={VacancyImg} alt='office' width={40} height={40} />ვაკანსიები</h1>
-                        <Link href='/vacancies' className='underline hover:no-underline hover:text-purple-500' >ყველა ვაკანსია</Link>
+                        <Link href='/vacancies' className=' hover:underline hover:text-purple-500 flex gap-2' >ყველა <Image src={Arrow} alt='arrow' width={20} height={20} /></Link>
                     </div>
                     <Vacancies />
                 </div>

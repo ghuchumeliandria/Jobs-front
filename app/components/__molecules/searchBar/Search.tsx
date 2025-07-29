@@ -69,7 +69,7 @@ export default function Search() {
     }
 
     return (
-        <div className="w-full   max-w-[1032px] mx-auto mt-[105px]  bg-transparent h-[70px] py-2 rounded-full border-[1px] pl-8 pr-2 flex items-center border-[#a155b9]">
+        <div className="w-full max-w-[1032px] mx-auto mt-[105px]  bg-transparent h-[70px] py-2 rounded-full border-[1px] pl-8 pr-2 flex items-center border-[#a155b9] max-[700px]:m-0 transition-all duration-300a">
 
             <form className='w-full flex justify-between relative' onSubmit={handleSubmit(onSubmit)} >
                 <div className="flex gap-2  items-center">

@@ -27,11 +27,12 @@ export default function page() {
     useEffect(() => {
         getCompany()
     }, [])
+    console.log(company)
     return (
 
         <div className="">
             <Header />
-            <div className="w-full max-w-2xl mx-auto mt-25 bg-white rounded-2xl shadow-2xl shadow-purple-500 p-6 flex flex-col sm:flex-row gap-6">
+            <div className="w-full max-w-2xl mx-auto mt-25 bg-white rounded-2xl shadow-xl shadow-pu p-6 flex flex-col sm:flex-row gap-6">
                 <div className="flex-shrink-0 self-center sm:self-start ">
                     {company?.avatar &&
                         <Image

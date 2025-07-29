@@ -87,43 +87,61 @@ export default function VacanciesList() {
             >
                 <h1 className='text-[32px] font-semibold pb-3 text-center'>ყველა ვაკანსია</h1>
                 {loading ? <LoadingOverlay /> :
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
+                    <div className="border rounded-[20px] border-[#e5e7eb]">
+                        <div className="p-4 border-b border-[#e5e7eb]">
+                            <h1 className="text-[#909090]">{vacancies.length} ვაკანსია</h1>
+                        </div>
                         {vacancies && vacancies.length > 0 ? vacancies.map((el: Vacancy, index) => (
-                            <div className="w-full flex flex-col justify-between max-w-[295px] min-h-[253px] p-5 rounded-2xl border max-[639px]:max-w-full max-[639px]:rounded-xl border-[#e5e7eb] shadow-2xl shadow-[#A155B9]" key={index}>
-                                <div className="">
+                            <Link href={`/vacancies/${el._id}`} key={index} >
+                                <div className={`w-full flex gap-4   hover:bg-[#f3c1f320] hover:border-l-[4px] hover:border-l-[#8b4b8b]   mx-auto  p-5 border-b max-[639px]:max-w-full  border-[#e5e7eb] `} >
 
-                                    <div className="flex gap-3 items-center">
+                                    <div className="">
                                         {el.company.avatar ?
-                                            <Image src={el.company.avatar} alt='company-profile' width={30} height={30} />
+                                            <Image src={el.company.avatar} alt='company-profile' width={40} height={30} />
                                             : null}
-                                        <div className="">
-                                            <Link href={`/vacancies/${el._id}`}>
-                                                <h1 className='text-[17px] font-semibold hover:text-[#A155B9] cursor-pointer'>{el.name}</h1>
-                                            </Link>
-                                            <p className='text-[13px] text-violet-400'>{el.location}</p>
-                                        </div>
 
                                     </div>
-                                    <p className='text-gray-500 text-[13px] leading-relaxed max-w-prose line-clamp-3'>{el.description}</p>
+                                    <div className="flex w-full justify-between ">
 
+                                        <div className="">
+                                            <h2 className="font-medium text-[16px]">{el.company.fullName}</h2>
+                                            <h1 className="font-bold text-[20px]">{el.name}</h1>
+
+                                            <h1 className="flex items-center mt-2 gap-1 text-[13px] text-[#909090]"><Image src={'https://myjobs.ge/images/secondaryPlace.svg'} alt="location" width={20} height={20} />{el.location}</h1>
+                                        </div>
+
+                                        <div className=" flex flex-col justify-between items-end">
+                                            <h3 className="text-[13px] text-[#909090]">{el.createdAt.split('T')[0]}</h3>
+                                            {el?.sallery &&
+                                                <h1 className='text-[14px] flex items-center gap-2'><Image src={Money} alt='money' width={20} height={20} className='' />
+                                                    {el?.sallery}$  - {el?.sallery + 200}$<span className='text-gray-500 text-[13px]'>/თვეში</span> </h1>
+                                            }
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className="mt-1 flex flex-col gap-2">
+                                {/* <div className="">
+                                    <div className="">
+                                    <p className='text-[13px] text-violet-400'>{el.location}</p>
+                                    </div>
+                                    <p className='text-gray-500 text-[13px] leading-relaxed max-w-prose line-clamp-3'>{el.description}</p>
+                                    
+                                    <div className="mt-1 flex flex-col gap-2">
                                     <p className='flex gap-2 text-[13px] mt-2'>
-                                        <Image src='https://myjobs.ge/images/people.svg' alt='people' width={20} height={20} />
-                                        {el.company.fullName}
+                                    <Image src='https://myjobs.ge/images/people.svg' alt='people' width={20} height={20} />
+                                    {el.company.fullName}
                                     </p>
                                     <p className='flex gap-2 text-[13px]'>
-                                        <Image src={Email} alt='email' width={18} height={18} />
-                                        {el.company.email}
+                                    <Image src={Email} alt='email' width={18} height={18} />
+                                    {el.company.email}
                                     </p>
                                     <p className='text-[#222220] flex gap-2 text-[13px]'>
-                                        <Image src={Money} alt='money-icon' width={20} height={20} />
-                                        {el.sallery} $
+                                    <Image src={Money} alt='money-icon' width={20} height={20} />
+                                    {el.sallery} $
                                     </p>
-                                </div>
+                                    </div>
+                                    </div> */}
+                            </Link>
 
-                            </div>
                         )) : (
 
                             <motion.div
@@ -138,7 +156,7 @@ export default function VacanciesList() {
                         )}
                     </div>
                 }
-            </motion.div>
-        </div>
+            </motion.div >
+        </div >
     )
 }
