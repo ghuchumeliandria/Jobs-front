@@ -119,27 +119,7 @@ export default function VacanciesList() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="">
-                                    <div className="">
-                                    <p className='text-[13px] text-violet-400'>{el.location}</p>
-                                    </div>
-                                    <p className='text-gray-500 text-[13px] leading-relaxed max-w-prose line-clamp-3'>{el.description}</p>
-                                    
-                                    <div className="mt-1 flex flex-col gap-2">
-                                    <p className='flex gap-2 text-[13px] mt-2'>
-                                    <Image src='https://myjobs.ge/images/people.svg' alt='people' width={20} height={20} />
-                                    {el.company.fullName}
-                                    </p>
-                                    <p className='flex gap-2 text-[13px]'>
-                                    <Image src={Email} alt='email' width={18} height={18} />
-                                    {el.company.email}
-                                    </p>
-                                    <p className='text-[#222220] flex gap-2 text-[13px]'>
-                                    <Image src={Money} alt='money-icon' width={20} height={20} />
-                                    {el.sallery} $
-                                    </p>
-                                    </div>
-                                    </div> */}
+
                             </Link>
 
                         )) : (

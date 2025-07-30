@@ -5,6 +5,7 @@ import UserProfile from '@/app/components/__organisms/userProfile/UserProfile'
 import { useGetCurrentUserOrCompany } from '@/app/lib/getCurrentUserOrCompany'
 import { Company, User } from '@/app/types/types'
 import { getCookie } from 'cookies-next'
+import { redirect } from 'next/navigation'
 import React, { useEffect, useState } from 'react'
 
 export default function page() {
@@ -13,6 +14,7 @@ export default function page() {
     const token = getCookie("token")
 
 
+    if (!token) redirect('/')
     useEffect(() => {
         if (token) getCurrentUserOrCompany({ token, setUser: setProfile })
     }, [])

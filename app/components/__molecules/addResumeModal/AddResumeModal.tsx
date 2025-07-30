@@ -1,4 +1,5 @@
 import { axiosInstance } from '@/app/lib/axios-instance'
+import { useUploadStore } from '@/app/zoostand/zoostand';
 import { getCookie } from 'cookies-next'
 import { p } from 'framer-motion/client';
 import React, { useState } from 'react'
@@ -9,8 +10,8 @@ type Props = {
 }
 export default function AddResumeModal({ vacancyId, setModal }: Props) {
     const token = getCookie('token')
-    const [file, setFile] = useState<File | null>()
-
+    const setFile = useUploadStore((state) => state.setFile)
+    const file = useUploadStore((state) => state.file)
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 
         if (e.target.files && e.target.files[0].name.split('.')[1] !== "pdf") {
@@ -19,16 +20,17 @@ export default function AddResumeModal({ vacancyId, setModal }: Props) {
         }
 
         if (e.target.files && e.target.files[0]) {
-            console.log(e.target.files[0])
+
             setFile(e.target.files[0])
         }
     }
 
     const handleSubmit = async () => {
-        if (!file) return alert("აირჩიე pdf ფაილი")
+        if (file === null) return alert("აირჩიე pdf ფაილი")
 
         const formData = new FormData()
         formData.append("file", file)
+        console.log(file)
 
         try {
             const resp = await axiosInstance.post(`/vacancies/${vacancyId}/apply`, formData, {

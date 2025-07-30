@@ -36,7 +36,7 @@ export default function Header() {
                 </div>
 
                 <div className="flex">
-                    <div onClick={() => setShowNavBar(true)} className="hidden max-[768px]:flex cursor-pointer w-[2rem] h-[2rem]  justify-center items-center"><BurgerSvg /></div>
+                    <div onClick={() => setShowNavBar(true)} className="hidden max-[768px]:flex cursor-pointer w-[2rem] h-[2rem]  justify-end -mr-2 items-center"><BurgerSvg /></div>
                     {user && ["COMPANY", "USER", "ADMIN"].includes(user?.role) ?
                         user.role === "COMPANY" ?
                             <div className="flex gap-3">

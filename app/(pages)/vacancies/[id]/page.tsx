@@ -19,6 +19,7 @@ export default function page() {
     const router = useRouter()
     const [vacancy, setVacancy] = useState<Vacancy | null>(null)
     const [loading, setLoading] = useState(true)
+
     const { id } = useParams()
     const getVacancy = async () => {
         try {
@@ -52,10 +53,6 @@ export default function page() {
         <div className="bg-[#e5e7eb45] min-h-[110vh] -mt-5 pt-5 relative">
             <Header />
             <div className="w-full max-w-[1000px] mx-auto border border-[#ced0d3] mt-25 bg-white rounded-2xl p-6  flex flex-col  gap-6 max-[1000px]:rounded-none">
-                {/* <div className="flex-shrink-0 self-center sm:self-start ">
-                   
-                </div> */}
-
 
                 <div className="w-full flex flex-col gap-3">
                     <div className="w-full flex justify-between items-center ">
@@ -145,6 +142,7 @@ export default function page() {
                 </div>
 
                 <div className="flex gap-3 items-center min-[500px]:hidden justify-center">
+
                     <button onClick={addResume} className='p-3  bg-[#a155b9] cursor-pointer rounded-full text-white font-semibold text-[13px]'>გააგზავნე CV</button>
                 </div>
 
