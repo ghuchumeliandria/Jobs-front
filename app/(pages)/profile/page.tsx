@@ -13,18 +13,19 @@ export default function page() {
     const { getCurrentUserOrCompany } = useGetCurrentUserOrCompany()
     const token = getCookie("token")
 
+    if (!token) return redirect('/')
 
-    if (!token) redirect('/')
     useEffect(() => {
         if (token) getCurrentUserOrCompany({ token, setUser: setProfile })
     }, [])
 
     if (!profile) return <LoadingOverlay />
+    console.log(profile.role)
     return (
         <div>
             {
                 profile.role === "COMPANY" ?
-                    <CopmanyProfile company={profile as Company} /> : <UserProfile user={profile as User} />
+                    <CopmanyProfile /> : <UserProfile user={profile as User} />
             }
         </div>
     )
